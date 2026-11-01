@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>철분제 복용 가이드</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fff7f4;
+      --bg-accent-1: #ffd9cf;
+      --bg-accent-2: #ffe9d6;
+      --text: #2b1d1a;
+      --text-soft: #7a5f58;
+      --brand: #c0392b;
+      --brand-2: #e8735a;
+      --card: rgba(255, 255, 255, 0.7);
+      --card-solid: #ffffff;
+      --card-border: rgba(192, 57, 43, 0.12);
+      --shadow: 0 30px 80px rgba(192, 57, 43, 0.15);
+      --shadow-sm: 0 10px 30px rgba(192, 57, 43, 0.08);
+      --warn: #b45309;
+      --warn-bg: #fff4e0;
+      --note: #4b5563;
+      --note-bg: #f1f1f4;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1a1211;
+        --bg-accent-1: #4a1f1a;
+        --bg-accent-2: #3a2418;
+        --text: #fbeeea;
+        --text-soft: #c9aaa2;
+        --brand: #ff7a66;
+        --brand-2: #ffb08a;
+        --card: rgba(40, 26, 24, 0.65);
+        --card-solid: #241917;
+        --card-border: rgba(255, 122, 102, 0.18);
+        --shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+        --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.3);
+        --warn: #fbbf24;
+        --warn-bg: #3a2a12;
+        --note: #d1d5db;
+        --note-bg: #2a2423;
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Noto Sans KR", "Malgun Gothic", sans-serif;
+      line-height: 1.7;
+      word-break: keep-all;
+    }
+
+    /* 출처 번호 */
+    sup a {
+      margin-left: 1px;
+      font-size: 0.72em;
+      font-weight: 700;
+      color: var(--brand);
+      text-decoration: none;
+    }
+
+    sup a:hover {
+      text-decoration: underline;
+    }
+
+    /* ---------- 첫 화면 ---------- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 20%, var(--bg-accent-1), transparent 45%),
+        radial-gradient(circle at 85% 80%, var(--bg-accent-2), transparent 50%),
+        var(--bg);
+    }
+
+    /* 배경에 떠다니는 알약 장식 */
+    .pill {
+      position: absolute;
+      width: 120px;
+      height: 48px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--brand) 50%, var(--bg-accent-1) 50%);
+      opacity: 0.18;
+      animation: drift 14s ease-in-out infinite alternate;
+    }
+
+    .pill.a { top: 12%; right: 12%; transform: rotate(-30deg); }
+    .pill.b { bottom: 14%; left: 10%; width: 90px; height: 36px; transform: rotate(25deg); animation-delay: -5s; }
+    .pill.c { top: 70%; right: 22%; width: 60px; height: 24px; transform: rotate(60deg); animation-delay: -9s; }
+
+    @keyframes drift {
+      from { translate: 0 0; }
+      to   { translate: 0 -24px; }
+    }
+
+    .hero-card {
+      position: relative;
+      z-index: 1;
+      margin: 0 16px;
+      padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.75rem, 7vw, 5rem);
+      text-align: center;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 32px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+      animation: appear 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 1.5rem;
+      display: grid;
+      place-items: center;
+      border-radius: 22px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      box-shadow: 0 12px 30px rgba(192, 57, 43, 0.35);
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 1rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--brand);
+      background: color-mix(in srgb, var(--brand) 12%, transparent);
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 6rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      background: linear-gradient(90deg, var(--brand), var(--brand-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      margin-top: 1rem;
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      color: var(--text-soft);
+    }
+
+    .hero-nav {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 2rem;
+      padding: 0 16px;
+    }
+
+    .hero-nav a {
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .hero-nav a:hover {
+      transform: translateY(-2px);
+      background: color-mix(in srgb, var(--brand) 14%, var(--card-solid));
+    }
+
+    /* ---------- 본문 섹션 ---------- */
+    section.content {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: clamp(4rem, 9vw, 6.5rem) 16px 0;
+    }
+
+    .section-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--brand);
+    }
+
+    h2 {
+      margin-top: 0.4rem;
+      font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+
+    .section-intro {
+      margin-top: 0.8rem;
+      max-width: 680px;
+      color: var(--text-soft);
+      font-size: 1.05rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2.25rem;
+    }
+
+    .card {
+      padding: 1.75rem;
+      background: var(--card-solid);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .card .en {
+      display: block;
+      margin-top: 0.15rem;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--text-soft);
+    }
+
+    .card p {
+      margin-top: 0.75rem;
+      color: var(--text-soft);
+      font-size: 0.97rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--brand);
+      background: color-mix(in srgb, var(--brand) 10%, transparent);
+    }
+
+    .tag.weak {
+      color: var(--note);
+      background: var(--note-bg);
+    }
+
+    .type-group {
+      margin-top: 2.5rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .type-group::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--brand);
+    }
+
+    .type-group + .grid {
+      margin-top: 1rem;
+    }
+
+    /* 부작용 */
+    .effect {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .effect .emoji {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      font-size: 1.5rem;
+      border-radius: 14px;
+      background: color-mix(in srgb, var(--brand) 10%, transparent);
+    }
+
+    .effect p {
+      margin-top: 0.35rem;
+    }
+
+    .tip-box {
+      margin-top: 1.75rem;
+      padding: 1.75rem;
+      border-radius: 24px;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--brand) 10%, var(--card-solid)), var(--card-solid));
+      border: 1px solid var(--card-border);
+    }
+
+    .tip-box h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .tip-box ul {
+      margin-top: 0.75rem;
+      padding-left: 1.2rem;
+      color: var(--text-soft);
+    }
+
+    .tip-box li + li {
+      margin-top: 0.35rem;
+    }
+
+    .tip-box strong {
+      color: var(--text);
+    }
+
+    .warning {
+      margin-top: 1.25rem;
+      padding: 1.25rem 1.5rem;
+      border-radius: 18px;
+      background: var(--warn-bg);
+      color: var(--warn);
+      font-weight: 500;
+    }
+
+    /* 고객층 */
+    .who .card h3,
+    .match .card h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .who .card h3 > span[aria-hidden],
+    .match .card h3 > span[aria-hidden] {
+      font-size: 1.6rem;
+    }
+
+    .not-for {
+      margin-top: 1.75rem;
+      padding: 1.75rem;
+      border-radius: 24px;
+      border: 2px dashed var(--card-border);
+    }
+
+    .not-for h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .not-for ul {
+      margin-top: 0.75rem;
+      padding-left: 1.2rem;
+      color: var(--text-soft);
+    }
+
+    .not-for li + li {
+      margin-top: 0.35rem;
+    }
+
+    /* 나에게 맞는 철분제 */
+    .pick {
+      margin-top: 1rem;
+      padding: 0.9rem 1rem;
+      border-radius: 14px;
+      background: color-mix(in srgb, var(--brand) 8%, transparent);
+    }
+
+    .pick dt {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--brand);
+    }
+
+    .pick dd {
+      margin-top: 0.15rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .match .card p.why {
+      font-size: 0.9rem;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      margin-top: 1.25rem;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* 출처 */
+    .sources ol {
+      margin-top: 1.5rem;
+      padding-left: 1.5rem;
+      color: var(--text-soft);
+      font-size: 0.93rem;
+    }
+
+    .sources li {
+      padding-left: 0.25rem;
+      scroll-margin-top: 24px;
+    }
+
+    .sources li + li {
+      margin-top: 0.6rem;
+    }
+
+    .sources li:target {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .sources a {
+      color: var(--brand);
+      word-break: break-all;
+    }
+
+    footer {
+      max-width: 1080px;
+      margin: clamp(4rem, 9vw, 6rem) auto 0;
+      padding: 2rem 16px 3rem;
+      border-top: 1px solid var(--card-border);
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .pill, .hero-card { animation: none; }
+      .card, .hero-nav a { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- 첫 화면 -->
+  <header class="hero">
+    <div class="pill a"></div>
+    <div class="pill b"></div>
+    <div class="pill c"></div>
+
+    <div class="hero-card">
+      <div class="icon" aria-hidden="true">
+        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10.5 20.5 3.5 13.5a4.95 4.95 0 1 1 7-7l7 7a4.95 4.95 0 1 1-7 7Z"/>
+          <path d="m8.5 8.5 7 7"/>
+        </svg>
+      </div>
+      <span class="badge">건강 가이드</span>
+      <h1>철분제 복용 가이드</h1>
+      <p class="subtitle">올바르게 먹고, 건강하게 채우기</p>
+    </div>
+
+    <nav class="hero-nav">
+      <a href="#types">💊 철분제 종류</a>
+      <a href="#side-effects">⚠️ 부작용</a>
+      <a href="#who">🙋 이런 분께 필요해요</a>
+      <a href="#match">🎯 나에게 맞는 철분제</a>
+      <a href="#sources">📚 출처</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 철분제 종류 -->
+    <section class="content" id="types">
+      <p class="section-label">TYPES</p>
+      <h2>철분제 종류</h2>
+      <p class="section-intro">
+        철분제는 크게 <strong>헴철</strong>과 <strong>비헴철</strong>로 나뉘어요.
+        종류마다 흡수 방식과 위장 부담이 달라서 내 몸 상태에 맞는 제품을 고르는 것이 중요해요.
+        제품마다 실제 철 함량(원소철)이 다르니 라벨의 함량을 꼭 확인하세요.<sup><a href="#ref-1">1</a></sup>
+      </p>
+
+      <h3 class="type-group">헴철 (Heme Iron)</h3>
+      <div class="grid">
+        <article class="card">
+          <h3>헴철<span class="en">동물성 원료에서 추출</span></h3>
+          <p>
+            고기에 들어 있는 철분과 같은 형태예요. 비헴철보다 흡수가 잘 되고,
+            함께 먹는 음식의 영향을 덜 받아요.<sup><a href="#ref-1">1</a></sup>
+            동물성 원료라 채식하는 분께는 맞지 않아요.
+          </p>
+          <div class="tags">
+            <span class="tag">흡수율 높음</span>
+            <span class="tag">음식 영향 적음</span>
+          </div>
+        </article>
+      </div>
+
+      <h3 class="type-group">비헴철 (Non-heme Iron)</h3>
+      <div class="grid">
+        <article class="card">
+          <h3>황산제일철<span class="en">Ferrous sulfate</span></h3>
+          <p>
+            가장 오래, 가장 널리 쓰여 온 철분제예요. 저렴하지만
+            위약(가짜 약)과 비교했을 때 위장 부작용 위험이 약 2.3배 높았어요.<sup><a href="#ref-5">5</a></sup>
+          </p>
+          <div class="tags">
+            <span class="tag">저렴함</span>
+            <span class="tag">위장 부작용 흔함</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>푸마르산제일철<span class="en">Ferrous fumarate</span></h3>
+          <p>
+            무게 대비 철 비율이 높아 적은 양으로 많은 철분을 보충할 수 있어요.
+            황산제일철과 같은 2가 철 염이라 위장 불편감이 생길 수 있어요.
+          </p>
+          <div class="tags">
+            <span class="tag">철 함량 높음</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>글루콘산제일철<span class="en">Ferrous gluconate</span></h3>
+          <p>
+            무게 대비 철 함량이 낮은 편이에요. 같은 알약 크기라도 들어 있는 철이 적으니
+            라벨의 원소철 함량을 확인하세요.<sup><a href="#ref-1">1</a></sup>
+          </p>
+          <div class="tags">
+            <span class="tag">함량 낮음</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>철 폴리말토오스 복합체<span class="en">3가 철 복합체 (IPC)</span></h3>
+          <p>
+            철이 당 성분에 감싸져 있는 형태로, 시럽 제품도 많아요.
+            임신부 연구에서는 황산제일철보다 부작용이 적었지만<sup><a href="#ref-9">9</a></sup>,
+            어린이 연구를 모은 분석에서는 부작용 차이가 없었고 혈색소는 조금 덜 올랐어요.<sup><a href="#ref-10">10</a></sup>
+          </p>
+          <div class="tags">
+            <span class="tag">시럽 제형 많음</span>
+            <span class="tag weak">연구 결과 엇갈림</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>킬레이트 철<span class="en">Ferrous bisglycinate</span></h3>
+          <p>
+            철을 아미노산(글리신)과 결합한 형태예요. 임신부 연구를 모은 분석에서
+            다른 철분제보다 혈색소가 더 오르고 위장 부작용이 적었어요.
+            어린이에서는 차이가 없었어요.<sup><a href="#ref-6">6</a></sup>
+          </p>
+          <div class="tags">
+            <span class="tag">임신부 연구에서 부작용 적음</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 부작용 -->
+    <section class="content" id="side-effects">
+      <p class="section-label">SIDE EFFECTS</p>
+      <h2>알아두면 좋은 부작용</h2>
+      <p class="section-intro">
+        철분제 부작용은 대부분 위장에서 생겨요. 하루 45mg 이상 많이 먹을수록 메스꺼움과
+        변비 같은 증상이 잘 생길 수 있어요.<sup><a href="#ref-1">1</a></sup>
+        증상이 심하거나 오래가면 의사나 약사와 상의해 제품이나 복용 방법을 바꿔 보세요.<sup><a href="#ref-3">3</a></sup>
+      </p>
+
+      <div class="grid">
+        <article class="card effect">
+          <div class="emoji" aria-hidden="true">😣</div>
+          <div>
+            <h3>변비</h3>
+            <p>가장 흔하게 이야기되는 부작용이에요.<sup><a href="#ref-3">3</a></sup> 물과 식이섬유를 충분히 드세요.</p>
+          </div>
+        </article>
+
+        <article class="card effect">
+          <div class="emoji" aria-hidden="true">🤢</div>
+          <div>
+            <h3>메스꺼움 · 복통</h3>
+            <p>속이 불편하면 식사와 함께 또는 식사 직후에 먹는 방법이 있어요.<sup><a href="#ref-3">3</a></sup></p>
+          </div>
+        </article>
+
+        <article class="card effect">
+          <div class="emoji" aria-hidden="true">🌀</div>
+          <div>
+            <h3>설사</h3>
+            <p>사람에 따라 변비 대신 설사가 생기기도 해요.<sup><a href="#ref-3">3</a></sup></p>
+          </div>
+        </article>
+
+        <article class="card effect">
+          <div class="emoji" aria-hidden="true">⚫</div>
+          <div>
+            <h3>검은 변</h3>
+            <p>흡수되지 않은 철분 때문에 변이 검게 보일 수 있어요.<sup><a href="#ref-8">8</a></sup></p>
+          </div>
+        </article>
+
+        <article class="card effect">
+          <div class="emoji" aria-hidden="true">🦷</div>
+          <div>
+            <h3>치아 착색</h3>
+            <p>시럽(액상) 철분제는 이가 물들 수 있어요. 물이나 과일 주스에 섞어 드세요.<sup><a href="#ref-3">3</a></sup></p>
+          </div>
+        </article>
+      </div>
+
+      <div class="tip-box">
+        <h3>💡 흡수를 돕고 부작용을 줄이는 팁</h3>
+        <ul>
+          <li><strong>비타민 C</strong>는 비헴철 흡수를 도와요. 반대로 <strong>차·커피</strong>의 폴리페놀은 흡수를 방해해요.<sup><a href="#ref-1">1</a></sup></li>
+          <li><strong>칼슘제</strong>는 철 흡수를 방해할 수 있으니 하루 중 다른 시간에 드세요.<sup><a href="#ref-1">1</a></sup></li>
+          <li>시럽 철분제는 <strong>우유</strong>에 섞지 마세요.<sup><a href="#ref-3">3</a></sup></li>
+          <li><strong>테트라사이클린 계열 항생제</strong>(독시사이클린 등)는 철분제와 2시간 간격을 두세요.<sup><a href="#ref-3">3</a></sup></li>
+          <li><strong>갑상선약(레보티록신)</strong>은 철분제와 같이 먹으면 약효가 떨어질 수 있어요.<sup><a href="#ref-1">1</a></sup></li>
+          <li><strong>위산 억제제</strong>(오메프라졸 등)를 먹고 있다면 철 흡수가 줄 수 있어요.<sup><a href="#ref-1">1</a></sup></li>
+        </ul>
+      </div>
+
+      <p class="warning">
+        ⚠️ 철분제를 실수로 많이 먹는 사고는 6세 미만 어린이의 치명적인 중독 원인 중 하나예요.
+        반드시 아이 손이 닿지 않는 곳에 보관하세요.<sup><a href="#ref-3">3</a></sup>
+      </p>
+    </section>
+
+    <!-- 적합한 고객층 -->
+    <section class="content who" id="who">
+      <p class="section-label">WHO NEEDS IT</p>
+      <h2>이런 분께 필요해요</h2>
+      <p class="section-intro">
+        철분이 <strong>더 많이 필요하거나</strong>, <strong>많이 빠져나가거나</strong>,
+        <strong>적게 먹거나 덜 흡수되는</strong> 분들이에요. 피로, 어지러움, 창백한 얼굴 같은 증상이 있다면
+        먼저 혈액 검사로 철분 상태를 확인해 보세요.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <h3><span aria-hidden="true">🤰</span>임신부</h3>
+          <p>
+            임신 중 철분이 부족하면 철결핍성 빈혈 위험이 커져요.<sup><a href="#ref-1">1</a></sup>
+            WHO는 임신 기간 동안 매일 철 30~60mg과 엽산을 함께 먹도록 권해요.<sup><a href="#ref-4">4</a></sup>
+            나라마다 시작 시기와 용량 기준이 다르니 산부인과 지침을 따르세요.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3><span aria-hidden="true">👩</span>월경량이 많은 여성</h3>
+          <p>월경량이 많은 가임기 여성은 철결핍 위험이 높아요.<sup><a href="#ref-1">1</a></sup></p>
+        </article>
+
+        <article class="card">
+          <h3><span aria-hidden="true">🧒</span>영유아 · 청소년</h3>
+          <p>
+            빠르게 자라는 시기라 철분이 많이 필요해요. 어린아이와 10대 여학생은
+            철결핍이 흔한 편이에요.<sup><a href="#ref-2">2</a></sup>
+          </p>
+        </article>
+
+        <article class="card">
+          <h3><span aria-hidden="true">🥗</span>채식하는 분</h3>
+          <p>
+            식물에 든 비헴철은 흡수율이 낮아서, 채식하는 분의 철 권장량은
+            일반 권장량의 1.8배로 잡아요.<sup><a href="#ref-11">11</a></sup>
+          </p>
+        </article>
+
+        <article class="card">
+          <h3><span aria-hidden="true">🩸</span>자주 헌혈하는 분</h3>
+          <p>헌혈을 자주 하면 피와 함께 철분이 빠져나가 철결핍 위험이 높아져요.<sup><a href="#ref-1">1</a></sup></p>
+        </article>
+
+        <article class="card">
+          <h3><span aria-hidden="true">🏃</span>운동선수</h3>
+          <p>특히 여성 운동선수는 철분이 부족해지기 쉬워요.<sup><a href="#ref-12">12</a></sup></p>
+        </article>
+
+        <article class="card">
+          <h3><span aria-hidden="true">🏥</span>특정 질환이 있는 분</h3>
+          <p>암, 위장 질환(흡수 장애), 심부전이 있는 분도 철결핍 위험이 높아요.<sup><a href="#ref-1">1</a></sup> 의사와 상의해 보충하세요.</p>
+        </article>
+      </div>
+
+      <div class="not-for">
+        <h3>🚫 이런 분은 먼저 의사와 상담하세요</h3>
+        <ul>
+          <li>철 결핍이 원인이 아닌 빈혈이 있는 분 (예: 용혈성 빈혈)<sup><a href="#ref-3">3</a></sup><sup><a href="#ref-8">8</a></sup></li>
+          <li>위궤양이나 위장관 출혈이 있는 분<sup><a href="#ref-3">3</a></sup></li>
+          <li>혈색소증처럼 몸에 철이 과도하게 쌓이는 질환이 있는 분<sup><a href="#ref-2">2</a></sup></li>
+          <li>
+            철결핍성 빈혈이 새로 생긴 <strong>성인 남성과 폐경 이후 여성</strong>:
+            약 3명 중 1명은 위장관에 원인 질환이 있어서, 철분제보다 원인 검사(내시경 등)가 먼저예요.<sup><a href="#ref-7">7</a></sup>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 나에게 맞는 철분제 -->
+    <section class="content match" id="match">
+      <p class="section-label">FIND YOURS</p>
+      <h2>나에게 맞는 철분제</h2>
+      <p class="section-intro">
+        상황별로 연구 결과와 공식 자료가 가리키는 방향을 정리했어요.
+        제품을 정하기 전에는 의사나 약사와 상담하세요.
+      </p>
+      <div class="legend">
+        <span><span class="tag">근거 있음</span> 공식 자료나 메타분석이 있어요</span>
+        <span><span class="tag weak">근거 부족</span> 연구가 적거나 결과가 엇갈려요</span>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <h3><span aria-hidden="true">🤰</span>임신부</h3>
+          <dl class="pick">
+            <dt>고려해 볼 종류</dt>
+            <dd>킬레이트 철(비스글리시네이트)</dd>
+          </dl>
+          <p class="why">
+            임신부 대상 연구를 모은 분석에서 다른 철분제보다 혈색소가 더 오르고
+            위장 부작용이 적었어요.<sup><a href="#ref-6">6</a></sup> 용량은 산부인과 지침을 따르세요.<sup><a href="#ref-4">4</a></sup>
+          </p>
+          <div class="tags"><span class="tag">근거 있음</span></div>
+        </article>
+
+        <article class="card">
+          <h3><span aria-hidden="true">😖</span>위가 예민하거나 부작용을 겪은 분</h3>
+          <dl class="pick">
+            <dt>고려해 볼 방법</dt>
+            <dd>황산제일철 대신 다른 종류로 바꾸기, 식사와 함께 먹기</dd>
+          </dl>
+          <p class="why">
+            황산제일철은 위장 부작용 위험이 뚜렷하게 높았어요.<sup><a href="#ref-5">5</a></sup>
+            킬레이트 철은 임신부에서 부작용이 적었고<sup><a href="#ref-6">6</a></sup>, 폴리말토오스 복합체는 결과가 엇갈려요.<sup><a href="#ref-9">9</a></sup><sup><a href="#ref-10">10</a></sup>
+          </p>
+          <div class="tags"><span class="tag">근거 있음</span><span class="tag weak">일부 근거 부족</span></div>
+        </article>
+
+        <article class="card">
+          <h3><span aria-hidden="true">🥗</span>채식하는 분</h3>
+          <dl class="pick">
+            <dt>고려해 볼 종류</dt>
+            <dd>비헴철 + 비타민 C</dd>
+          </dl>
+          <p class="why">
+            헴철은 동물성 원료라 맞지 않아요. 비헴철은 비타민 C와 함께 먹으면 흡수가 좋아지고,
+            차·커피는 흡수를 방해해요.<sup><a href="#ref-1">1</a></sup>
+          </p>
+          <div class="tags"><span class="tag">근거 있음</span></div>
+        </article>
+
+        <article class="card">
+          <h3><span aria-hidden="true">🧒</span>어린이</h3>
+          <dl class="pick">
+            <dt>고려해 볼 방법</dt>
+            <dd>소아과 상담 후 어린이용 시럽</dd>
+          </dl>
+          <p class="why">
+            어린이에서는 킬레이트 철이나 폴리말토오스 복합체가 다른 철분제보다
+            낫다는 근거가 뚜렷하지 않아요.<sup><a href="#ref-6">6</a></sup><sup><a href="#ref-10">10</a></sup>
+            시럽은 물이나 주스에 섞어 치아 착색을 줄이세요.<sup><a href="#ref-3">3</a></sup>
+          </p>
+          <div class="tags"><span class="tag weak">근거 부족</span></div>
+        </article>
+
+        <article class="card">
+          <h3><span aria-hidden="true">💊</span>다른 약을 먹고 있는 분</h3>
+          <dl class="pick">
+            <dt>고려해 볼 방법</dt>
+            <dd>종류보다 먹는 시간 조절이 먼저</dd>
+          </dl>
+          <p class="why">
+            갑상선약, 일부 항생제, 위산 억제제, 칼슘제는 철분제와 서로 흡수를 방해할 수 있어요.
+            약사에게 시간 간격을 물어보세요.<sup><a href="#ref-1">1</a></sup><sup><a href="#ref-3">3</a></sup>
+          </p>
+          <div class="tags"><span class="tag">근거 있음</span></div>
+        </article>
+
+        <article class="card">
+          <h3><span aria-hidden="true">🩺</span>빈혈 진단을 받은 분</h3>
+          <dl class="pick">
+            <dt>고려해 볼 방법</dt>
+            <dd>영양제보다 의사 처방 먼저</dd>
+          </dl>
+          <p class="why">
+            빈혈 치료에는 예방보다 많은 용량이 필요해요. 예를 들어 WHO는 빈혈이 있는 임신부에게
+            혈색소가 정상이 될 때까지 하루 120mg을 권해요.<sup><a href="#ref-4">4</a></sup>
+          </p>
+          <div class="tags"><span class="tag">근거 있음</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 출처 -->
+    <section class="content sources" id="sources">
+      <p class="section-label">SOURCES</p>
+      <h2>출처</h2>
+      <ol>
+        <li id="ref-1">미국 국립보건원 영양보충제국(NIH ODS), Iron – Health Professional Fact Sheet.
+          <a href="https://ods.od.nih.gov/factsheets/Iron-HealthProfessional/" target="_blank" rel="noopener">ods.od.nih.gov</a></li>
+        <li id="ref-2">미국 국립보건원 영양보충제국(NIH ODS), Iron – Fact Sheet for Consumers.
+          <a href="https://ods.od.nih.gov/factsheets/Iron-Consumer/" target="_blank" rel="noopener">ods.od.nih.gov</a></li>
+        <li id="ref-3">미국 국립의학도서관 MedlinePlus, Iron Supplements.
+          <a href="https://medlineplus.gov/druginfo/meds/a682778.html" target="_blank" rel="noopener">medlineplus.gov</a></li>
+        <li id="ref-4">세계보건기구(WHO) eLENA, Daily iron supplementation during pregnancy.
+          <a href="https://www.who.int/tools/elena/interventions/daily-iron-pregnancy" target="_blank" rel="noopener">who.int</a></li>
+        <li id="ref-5">Tolkien Z 외. Ferrous sulfate supplementation causes significant gastrointestinal side-effects in adults: a systematic review and meta-analysis. PLoS ONE, 2015.
+          <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4336293/" target="_blank" rel="noopener">PMC4336293</a></li>
+        <li id="ref-6">Fischer JAJ 외. The effects of oral ferrous bisglycinate supplementation on hemoglobin and ferritin concentrations in adults and children: a systematic review and meta-analysis. Nutrition Reviews, 2023.
+          <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10331582/" target="_blank" rel="noopener">PMC10331582</a></li>
+        <li id="ref-7">Snook J 외. British Society of Gastroenterology guidelines for the management of iron deficiency anaemia in adults. Gut, 2021.
+          <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8515119/" target="_blank" rel="noopener">PMC8515119</a></li>
+        <li id="ref-8">약학정보원, 철분제 리뷰 자료.
+          <a href="https://common.health.kr/shared/healthkr/pharmreview/철분제_최종.pdf" target="_blank" rel="noopener">health.kr</a></li>
+        <li id="ref-9">Efficacy and safety of oral iron (III) polymaltose complex versus ferrous sulfate in pregnant women with iron deficiency anemia: a multicenter randomized controlled study, 2016.
+          <a href="https://med-expert.com.ua/journals/en/efficacy-and-safety-of-oral-iron-iii-polymaltose-complex-versus-ferrous-sulfate-in-pregnant-women-with-iron-deficiency-anemia-a-multicenter-randomized-controlled-study/" target="_blank" rel="noopener">med-expert.com.ua</a></li>
+        <li id="ref-10">어린이 대상 철 폴리말토오스 복합체 대 황산제일철 메타분석.
+          <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7811280/" target="_blank" rel="noopener">PMC7811280</a></li>
+        <li id="ref-11">채식인의 철 상태에 관한 리뷰 (미국 의학연구소 권장량 1.8배 기준 설명). Advances in Clinical and Experimental Medicine, 2018.
+          <a href="https://advances.umw.edu.pl/pdf/2018/27/10/1383.pdf" target="_blank" rel="noopener">advances.umw.edu.pl</a></li>
+        <li id="ref-12">미국 국립보건원 영양보충제국(NIH ODS), Dietary Supplements for Exercise and Athletic Performance.
+          <a href="https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-HealthProfessional/" target="_blank" rel="noopener">ods.od.nih.gov</a></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    이 페이지는 일반적인 건강 정보를 제공하며, 의학적 진단이나 처방을 대신하지 않아요.<br>
+    복용 전 의사나 약사와 상담하세요.
+  </footer>
+</body>
+</html>
